@@ -100,11 +100,6 @@ EXPOSE 8500 8600 8600/udp
 COPY .release/docker/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 ENTRYPOINT ["docker-entrypoint.sh"]
 
-# By default you'll get an insecure single-node development server that stores
-# everything in RAM, exposes a web UI and HTTP endpoints, and bootstraps itself.
-# Don't use this configuration for production.
-CMD ["agent", "-dev", "-client", "0.0.0.0"]
-
 
 # Production docker image that uses CI built binaries.
 # Remember, this image cannot be built locally.
