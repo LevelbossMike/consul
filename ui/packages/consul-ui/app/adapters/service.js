@@ -16,7 +16,7 @@ export default class ServiceAdapter extends Adapter {
       `;
     } else {
       return request`
-        GET /v1/internal/ui/services?${{ dc }}
+        GET /v1/internal/ui/services?${{ dc }}&with-imports=true
         X-Request-ID: ${uri}
 
         ${{
