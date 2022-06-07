@@ -49,7 +49,7 @@
               kind: 'kind',
               searchproperty: {
                 as: 'searchproperty',
-                empty: [['Name', 'Tags']],
+                empty: [['Name', 'Tags', 'PeerName']],
               },
               search: {
                 as: 'filter',
