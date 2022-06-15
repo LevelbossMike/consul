@@ -36,20 +36,33 @@ export default class NodeAdapter extends Adapter {
     }
   }
 
-  requestForQueryRecord(request, { dc, ns, partition, index, id, uri }) {
+  requestForQueryRecord(request, { dc, ns, partition, index, id, uri, peer }) {
     if (typeof id === 'undefined') {
       throw new Error('You must specify an id');
     }
-    return request`
-      GET /v1/internal/ui/node/${id}?${{ dc }}
-      X-Request-ID: ${uri}
+    if (peer) {
+      return request`
+        GET /v1/internal/ui/node/${id}?${{ dc }}&peer=${peer}
+        X-Request-ID: ${uri}
 
-      ${{
-        ns,
-        partition,
-        index,
-      }}
-    `;
+        ${{
+          ns,
+          partition,
+          index,
+        }}
+      `;
+    } else {
+      return request`
+        GET /v1/internal/ui/node/${id}?${{ dc }}
+        X-Request-ID: ${uri}
+
+        ${{
+          ns,
+          partition,
+          index,
+        }}
+      `;
+    }
   }
 
   // this does not require a partition parameter
