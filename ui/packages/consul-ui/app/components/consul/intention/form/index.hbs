@@ -101,7 +101,7 @@ as |item readonly|}}
   {{/let}}
 
       <DataSource
-        @src={{uri '/${partition}/*/${dc}/services'
+        @src={{uri '/${partition}/*/${dc}/*/services'
           (hash
             partition=@partition
             dc=@dc.Name
