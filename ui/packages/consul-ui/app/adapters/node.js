@@ -10,8 +10,20 @@ import Adapter from './application';
 // to the node.
 
 export default class NodeAdapter extends Adapter {
-  requestForQuery(request, { dc, ns, partition, index, id, uri }) {
-    return request`
+  requestForQuery(request, { dc, ns, partition, index, id, uri, withPeers }) {
+    if (withPeers) {
+      return request`
+      GET /v1/internal/ui/nodes?${{ dc }}&with-imports=true
+      X-Request-ID: ${uri}
+
+      ${{
+        ns,
+        partition,
+        index,
+      }}
+    `;
+    } else {
+      return request`
       GET /v1/internal/ui/nodes?${{ dc }}
       X-Request-ID: ${uri}
 
@@ -21,6 +33,7 @@ export default class NodeAdapter extends Adapter {
         index,
       }}
     `;
+    }
   }
 
   requestForQueryRecord(request, { dc, ns, partition, index, id, uri }) {

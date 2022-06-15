@@ -12,11 +12,12 @@ as |route|>
   }} as |leader|>
 
     <DataLoader
-      @src={{uri '/${partition}/${nspace}/${dc}/nodes'
+      @src={{uri '/${partition}/${nspace}/${dc}/${withPeers}/nodes'
           (hash
             partition=route.params.partition
             nspace=route.params.nspace
             dc=route.params.dc
+            withPeers=true
           )
       }}
     as |api|>
