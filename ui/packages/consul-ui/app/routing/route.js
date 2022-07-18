@@ -60,7 +60,7 @@ export default class BaseRoute extends Route {
           value = undefined;
         }
       } else {
-        const possible = empty[0];
+        const possible = empty;
         let actual = value;
         if (Array.isArray(actual)) {
           actual = actual.split(',');
@@ -84,7 +84,7 @@ export default class BaseRoute extends Route {
       typeof this.queryParams !== 'undefined' &&
       typeof this.queryParams.searchproperty !== 'undefined'
     ) {
-      model.searchProperties = this.queryParams.searchproperty.empty[0];
+      model.searchProperties = this.queryParams.searchproperty.empty;
     }
     return model;
   }
